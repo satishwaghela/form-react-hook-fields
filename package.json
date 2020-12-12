@@ -1,10 +1,10 @@
 {
-  "name": "form-react-hook",
+  "name": "form-react-hook-fields",
   "version": "1.0.2",
-  "description": "Reusable form module using react hooks",
+  "description": "Reusable form fields module using react hooks",
   "author": "satishwaghela",
   "license": "MIT",
-  "repository": "satishwaghela/form-react-hook",
+  "repository": "satishwaghela/form-react-hook-fields",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.js",
@@ -62,7 +62,6 @@
     "dist"
   ],
   "dependencies": {
-    "immer": "^7.0.5",
     "lodash": "^4.17.19"
   }
 }
