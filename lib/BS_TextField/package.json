@@ -1,0 +1,6 @@
+{
+  "name": "form-react-hook-fields/BS_TextField",
+  "private": true,
+  "main": "../cjs/BS_TextField.js",
+  "module": "../esm/BS_TextField.js"
+}

@@ -22,18 +22,7 @@
     "array-level-validation",
     "performant-rendering"
   ],
-  "scripts": {
-    "build": "microbundle-crl --no-compress --format modern,cjs",
-    "start": "microbundle-crl watch --no-compress --format modern,cjs",
-    "prepare": "run-s build",
-    "test": "run-s test:unit test:lint test:build",
-    "test:build": "run-s build",
-    "test:lint": "eslint .",
-    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom",
-    "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
-  },
+  "scripts": {},
   "peerDependencies": {
     "react": "^16.0.0"
   },
@@ -62,6 +51,19 @@
     "dist"
   ],
   "dependencies": {
-    "lodash": "^4.17.19"
+    "@babel/cli": "^7.12.8",
+    "@babel/core": "^7.12.9",
+    "@babel/preset-typescript": "^7.12.7",
+    "@babel/register": "^7.12.1",
+    "@react-bootstrap/babel-preset": "^1.2.0",
+    "babel-loader": "^8.2.2",
+    "babel-preset": "^1.1.7",
+    "babel-preset-react": "^6.24.1",
+    "cherry-pick": "^0.5.0",
+    "lodash": "^4.17.19",
+    "webpack": "^4.44.2"
+  },
+  "publishConfig": {
+    "directory": "lib"
   }
 }
