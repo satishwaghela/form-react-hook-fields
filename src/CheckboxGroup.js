@@ -6,7 +6,7 @@ import useCheckboxGroup from './useCheckboxGroup';
 
 export default function CheckboxGroup (props) {
   const {
-    getCheckboxProps = getEmptyObject, form, fieldKeyPath, validation,
+    getCheckboxProps = getEmptyObject, getLabelProps = getEmptyObject, form, fieldKeyPath, validation,
     checkboxOptions, validateOnChange = true
   } = props;
 
@@ -23,14 +23,18 @@ export default function CheckboxGroup (props) {
   return (
     <>
       {checkboxOptions.map((option, i) => (
-        <input
-          type='checkbox'
+        <label
           key={i}
-          checked={value.includes(option.value)}
-          onChange={handleChange}
-          {...getCheckboxProps({ value: value, option })}
-          ref={onRef}
-        />
+          {...getLabelProps(option, value)}
+        >
+          <input
+            type='checkbox'
+            checked={value.includes(option.value)}
+            onChange={handleChange}
+            {...getCheckboxProps({ value: value, option })}
+            ref={onRef}
+          /> {option.label}
+        </label>
       ))}
       {helperText}
     </>
