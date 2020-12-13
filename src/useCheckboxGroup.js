@@ -1,15 +1,14 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
-import { getHelperText, useIsMount } from './FieldUtils';
-
-export default function useCheckbox () {
+export default function useCheckboxGroup (props) {
   const {
-    form, fieldKeyPath, validation,
-    validateOnChange = true
+    form, fieldKeyPath, validation, checkboxOptions = [], validateOnChange = true
   } = props;
+
   const fieldMetaData = form.getFieldMetaData(fieldKeyPath);
-  const value = form.getFieldValue(fieldKeyPath, false);
-  
+
+  const value = form.getFieldValue(fieldKeyPath, []);
+
   const isMount = useIsMount();
   useEffect(() => {
     if (validateOnChange && !isMount) {
@@ -17,13 +16,21 @@ export default function useCheckbox () {
       validator && validator();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value]);
+  }, [value.length]);
 
   const handleChange = (event) => {
-    const value = event.target.checked;
-    form.setFieldValue(fieldKeyPath, value);
+    const newValue = [...value];
+    const checked = event.target.checked;
+    const name = event.target.name;
+    if (checked) {
+      newValue.push(name);
+    } else {
+      const index = value.indexOf(name);
+      newValue.splice(index, 1);
+    }
+    form.setFieldValue(fieldKeyPath, newValue);
   };
-
+  
   return {
     fieldMetaData,
     value,
@@ -35,5 +42,5 @@ export default function useCheckbox () {
       formRef.current = ref;
     },
     helperText: getHelperText(fieldMetaData)
-  }
+  };
 }

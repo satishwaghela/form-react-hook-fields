@@ -26,7 +26,7 @@ export default function Checkbox (props) {
         type='checkbox'
         ref={onRef}
         onChange={handleChange}
-        value={value}
+        checked={!!value}
         {...getCheckboxProps({ value })}
       />
       {helperText}
