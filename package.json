@@ -15,6 +15,7 @@
     "react",
     "react-hook",
     "form-react-hook",
+    "form-react-hook-fields",
     "react-hook-form",
     "simple-react-hook-form",
     "form-rendering-using-json",
