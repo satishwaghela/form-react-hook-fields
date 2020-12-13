@@ -1,12 +1,12 @@
 {
   "name": "form-react-hook-fields",
-  "version": "1.0.2",
+  "version": "0.0.1",
   "description": "Reusable form fields module using react hooks",
   "author": "satishwaghela",
   "license": "MIT",
   "repository": "satishwaghela/form-react-hook-fields",
-  "main": "dist/index.js",
-  "module": "dist/index.modern.js",
+  "main": "lib/dist/form-react-hook-fields.js",
+  "module": "lib/dist/form-react-hook-fields.js",
   "source": "src/index.js",
   "engines": {
     "node": ">=10"
@@ -48,7 +48,7 @@
     "react-scripts": "^3.4.1"
   },
   "files": [
-    "dist"
+    "lib"
   ],
   "dependencies": {
     "@babel/cli": "^7.12.8",
