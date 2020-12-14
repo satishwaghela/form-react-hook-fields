@@ -15,7 +15,6 @@ export default function MuiCheckbox (props) {
   } = props;
 
   const {
-    fieldKeyPath,
     value,
     handleChange,
     onRef,

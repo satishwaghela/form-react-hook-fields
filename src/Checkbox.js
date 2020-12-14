@@ -11,7 +11,6 @@ export default function Checkbox (props) {
   } = props;
 
   const {
-    fieldKeyPath,
     value,
     handleChange,
     onRef,
