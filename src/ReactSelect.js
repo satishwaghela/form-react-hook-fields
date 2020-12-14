@@ -1,21 +1,19 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import Select from 'react-select';
 import PropTypes from 'prop-types';
 import { get as _get } from 'lodash';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import { getHelperText, useIsMount, MemoField, getEmptyObject } from './FieldUtils';
 
-export default function MuiAutoComplete (props) {
+import { getHelperText, useIsMount, getEmptyObject } from './FieldUtils';
+
+export default function ReactSelect (props) {
   const {
-    getAutocompleteProps = getEmptyObject, getTextFieldProps = getEmptyObject,
     form, fieldKeyPath, validation,
-    valueKey, validateOnChange = true
+    valueKey, validateOnChange = true,
+    getSelectProps = getEmptyObject
   } = props;
+
   const fieldMetaData = form.getFieldMetaData(fieldKeyPath);
-
   const value = form.getFieldValue(fieldKeyPath);
-
-  const { multiple, options } = getAutocompleteProps({ value: value });
 
   const isMount = useIsMount();
   useEffect(() => {
@@ -26,7 +24,11 @@ export default function MuiAutoComplete (props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
-  const handleChange = (event, selected) => {
+  const selectProps = getSelectProps({ value });
+  const options = selectProps.options || [];
+  const multiple = selectProps.multiple;
+
+  const handleChange = (selected) => {
     let value;
     if (valueKey) {
       if (multiple) {
@@ -66,24 +68,24 @@ export default function MuiAutoComplete (props) {
 
   return (
     <>
-      <Autocomplete
-        fullWidth
+      <Select
         value={selected}
         onChange={handleChange}
-        renderInput={(params) => <TextField {...params} {...getTextFieldProps({ value: value })} />}
+        components={{
+          DropdownIndicator: null
+        }}
+        {...selectProps}
         ref={form.registerField(fieldKeyPath, {
           validation: validation
         })}
-        {...getAutocompleteProps({ value: value })}
       />
       {getHelperText(fieldMetaData)}
     </>
   );
 }
 
-MuiAutoComplete.propTypes = {
-  getAutocompleteProps: PropTypes.func,
-  getTextFieldProps: PropTypes.func,
+ReactSelect.propTypes = {
+  getSelectProps: PropTypes.func,
   form: PropTypes.object,
   fieldKeyPath: PropTypes.string,
   validation: PropTypes.func,
@@ -91,10 +93,10 @@ MuiAutoComplete.propTypes = {
   valueKey: PropTypes.string
 };
 
-export function MemoMuiAutoComplete (props) {
+export function MemoReactSelect (props) {
   return (
     <MemoField
-      Field={MuiAutoComplete}
+      Field={ReactSelect}
       props={props}
     />
   );
